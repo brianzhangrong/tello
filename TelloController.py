@@ -59,7 +59,7 @@ class TelloController:
                 else:
                     print("[warning]逆时针旋转:%f"%rotate)
                 print("[warning]fly distance:%d,ratio:%f"%(distance,GlobalConfig.ratio()))
-                distance=distance/(1.0*GlobalConfig.ratio())
+                distance=distance*GlobalConfig.ratio()
                 if not  isDebug:
                     if cw_or_ccw>0:
                         #顺时针
