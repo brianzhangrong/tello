@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="566cda7d-d0e8-4339-be52-4e51d59813f6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/TQLabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/TQLabel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelloController.py" beforeDir="false" afterPath="$PROJECT_DIR$/TelloController.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,8 +13,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/py$TelloController.coverage" NAME="TelloController Coverage Results" MODIFIED="1529760511026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/py$TelloQt.coverage" NAME="TelloQt Coverage Results" MODIFIED="1529915672790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py$TelloQt.coverage" NAME="TelloQt Coverage Results" MODIFIED="1529916463081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py$TelloController.coverage" NAME="TelloController Coverage Results" MODIFIED="1529916671853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py$GlobalConfig.coverage" NAME="GlobalConfig Coverage Results" MODIFIED="1529914977180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py$TelloTest.coverage" NAME="TelloTest Coverage Results" MODIFIED="1529761214326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py$tello.coverage" NAME="tello Coverage Results" MODIFIED="1529649482254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -46,8 +47,8 @@
       <file leaf-file-name="TelloController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TelloController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+            <state relative-caret-position="227">
+              <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
               <folding>
                 <element signature="e#195#206#0" expanded="true" />
               </folding>
@@ -116,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/TQLabel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="517">
-              <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
               <folding>
                 <element signature="e#196#215#0" expanded="true" />
               </folding>
@@ -153,9 +154,9 @@
         <option value="$PROJECT_DIR$/TelloTest.py" />
         <option value="$PROJECT_DIR$/TelloQt.py" />
         <option value="$PROJECT_DIR$/TelloUi.py" />
-        <option value="$PROJECT_DIR$/TQLabel.py" />
         <option value="$PROJECT_DIR$/GlobalConfig.py" />
         <option value="$PROJECT_DIR$/tello.py" />
+        <option value="$PROJECT_DIR$/TQLabel.py" />
         <option value="$PROJECT_DIR$/TelloController.py" />
       </list>
     </option>
@@ -228,7 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TelloQt">
+  <component name="RunManager" selected="Python.TelloController">
     <configuration name="GlobalConfig" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="py" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -333,10 +334,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TelloController" />
         <item itemvalue="Python.TelloQt" />
         <item itemvalue="Python.GlobalConfig" />
         <item itemvalue="Python.TelloTest" />
-        <item itemvalue="Python.TelloController" />
         <item itemvalue="Python.tello" />
       </list>
     </recent_temporary>
@@ -702,16 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TQLabel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-          <folding>
-            <element signature="e#196#215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TelloQt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -740,10 +731,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TQLabel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="e#196#215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TelloController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+        <state relative-caret-position="227">
+          <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
           <folding>
             <element signature="e#195#206#0" expanded="true" />
           </folding>

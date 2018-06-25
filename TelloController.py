@@ -75,13 +75,16 @@ class TelloController:
 
     def move_forward(self,distance,drone):
         while(distance>5):
-            drone.move_forward(5)
+            if drone is not None:
+                drone.move_forward(5)
             distance-=5
-            print("move forwar:5")
+            print("move forward:5")
         if(distance>0):
-            drone.move_forward(distance)
+            if drone is not None:
+                drone.move_forward(distance)
             print("move forward:%f"%distance)
-        time.sleep(5)
+        if drone is not None:
+            time.sleep(5)
 
     def cal_distance(self,toVector):
         return math.sqrt(toVector[0]*toVector[0]+toVector[1]*toVector[1])
@@ -106,6 +109,10 @@ class TelloController:
         print("#rotate:%51f#"%rotate)
         print("############################################################")
         return rotate
+
+
+c=TelloController()
+c.move_forward(33.383654,None)
     # def calc_angle(self,x_point_s, y_point_s, x_point_e, y_point_e):
     #     angle = 0
     #     y_se = y_point_e - y_point_s;

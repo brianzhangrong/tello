@@ -64,6 +64,7 @@ class TQLable(QLabel):
         print ("************fly directions****************"+repr(point))
 
         controller =TelloController.TelloController()
+
         controller.fly(point,True)
         #after fly release point
         point=[]
