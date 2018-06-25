@@ -67,15 +67,21 @@ class TelloController:
                     else:
                         #逆时针
                         drone.rotate_ccw(rotate)
-                    drone.move_forward(distance)
-                    time.sleep(5)
+                    self.move_forward(distance,drone)
                 print("[warning]actual fly distance:%f" % distance)
 
         else:
             print('no point error')
 
-
-
+    def move_forward(self,distance,drone):
+        while(distance>5):
+            drone.move_forward(5)
+            distance-=5
+            print("move forwar:5")
+        if(distance>0):
+            drone.move_forward(distance)
+            print("move forward:%f"%distance)
+        time.sleep(5)
 
     def cal_distance(self,toVector):
         return math.sqrt(toVector[0]*toVector[0]+toVector[1]*toVector[1])
