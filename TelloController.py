@@ -111,8 +111,6 @@ class TelloController:
         return rotate
 
 
-c=TelloController()
-c.move_forward(33.383654,None)
     # def calc_angle(self,x_point_s, y_point_s, x_point_e, y_point_e):
     #     angle = 0
     #     y_se = y_point_e - y_point_s;
