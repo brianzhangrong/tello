@@ -167,7 +167,7 @@ class TelloController:
         try:
             ret=drone.move_up(0.5)
             if ret == 'OK':
-                print('[command_ret]move_up_ok:0.5' )
+                print('[command_ret]move_up_ok:0.5')
             elif ret == 'FALSE':
                 print("[re-command]moveup")
                 self.moveUp()

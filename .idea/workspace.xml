@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="566cda7d-d0e8-4339-be52-4e51d59813f6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GlobalConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/GlobalConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PortClear.py" beforeDir="false" afterPath="$PROJECT_DIR$/PortClear.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelloController.py" beforeDir="false" afterPath="$PROJECT_DIR$/TelloController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TelloQt.py" beforeDir="false" afterPath="$PROJECT_DIR$/TelloQt.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,8 +47,8 @@
       <file leaf-file-name="TelloController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TelloController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="265" column="39" lean-forward="true" selection-start-line="265" selection-start-column="39" selection-end-line="265" selection-end-column="39" />
+            <state relative-caret-position="291">
+              <caret line="169" column="51" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
               <folding>
                 <element signature="e#195#206#0" expanded="true" />
               </folding>
@@ -94,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/tello.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
-              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+              <caret line="350" column="8" selection-start-line="350" selection-start-column="8" selection-end-line="350" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -771,14 +767,14 @@
     <entry file="file://$PROJECT_DIR$/tello.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
-          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+          <caret line="350" column="8" selection-start-line="350" selection-start-column="8" selection-end-line="350" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TelloController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="265" column="39" lean-forward="true" selection-start-line="265" selection-start-column="39" selection-end-line="265" selection-end-column="39" />
+        <state relative-caret-position="291">
+          <caret line="169" column="51" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
           <folding>
             <element signature="e#195#206#0" expanded="true" />
           </folding>
