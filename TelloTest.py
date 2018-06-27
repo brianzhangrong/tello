@@ -110,5 +110,4 @@ def getParameter(x):
 
 
 if __name__ == '__main__':
-    kill()
     main()

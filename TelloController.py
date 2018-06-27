@@ -144,7 +144,7 @@ class TelloController:
     def rotateCcw(self,  rotate):
         global drone
         try:
-            ret=drone.rotate_ccw(int(rotate))
+            ret=drone.rotate_ccw(rotate)
             if ret == 'OK':
                 print('[command_ret]rotateCcw_ok:%d'%(int(rotate)))
             elif ret == 'FALSE':
@@ -157,16 +157,16 @@ class TelloController:
         except BaseException as e:
             msg = traceback.format_exc()
             print(msg)
-            drone.land()
+            self.rotateCcw(rotate)
     '''
     顺时针旋转
     '''
     def rotateCw(self, rotate):
         global drone
         try:
-            ret = drone.rotate_cw(int(rotate))
+            ret = drone.rotate_cw(rotate)
             if ret == 'OK':
-                print('[command_ret]rotate_cw_ok:%d'%(int(rotate)))
+                print('[command_ret]rotate_cw_ok:%d'%(rotate))
             elif ret == 'FALSE':
                 print("[re-command]rotateCw")
                 self.rotateCw(rotate)
@@ -177,6 +177,7 @@ class TelloController:
         except BaseException as e:
             msg = traceback.format_exc()
             print(msg)
+            self.rotateCw(rotate)
     '''
     上升
     '''
@@ -221,13 +222,14 @@ class TelloController:
     '''
     def move_forward(self,distance):
         global drone
-        if(distance>4):
-            loop = distance//4
+        stepLength=4
+        if(distance>stepLength):
+            loop = distance//stepLength
             if drone is not None:
                 for i in range(loop):
-                    self.makeSureForwardMoved(4)
-            distance-=4*loop
-            print("move forward:4")
+                    self.makeSureForwardMoved(stepLength)
+            distance-=stepLength*loop
+            print("move forward:%d"%stepLength)
         if(distance>0):
             if drone is not None:
                 self.makeSureForwardMoved(distance)
@@ -253,6 +255,7 @@ class TelloController:
         except BaseException as e:
             msg = traceback.format_exc()
             print(msg)
+            self.makeSureForwardMoved(distance)
 
     def cal_distance(self,toVector):
         return math.sqrt(toVector[0]*toVector[0]+toVector[1]*toVector[1])
