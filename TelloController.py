@@ -36,12 +36,13 @@ class TelloController:
                 step+=1
                 p=point[i]
                 if p == lastPoint:
-                    #第一步 飞机起飞，上升1m，连接ssid
+                    #第一步 连接ssid,飞机起飞，上升0.5m
                     begin = True
                     if(not isDebug):
                         if drone is None:
                             self.connect()
                         self.takeOff()
+                        self.setSpeed()
                         self.moveUp()
                     startVector=startDirection
                     toVector=np.polysub(point[i+1],p)
@@ -99,6 +100,23 @@ class TelloController:
             drone = tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
             time.sleep(5)
             print("[command]connect to tello")
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
+
+    def setSpeed(self):
+        global drone
+        try:
+            speed=0.5
+            ret = drone.set_speed(speed)
+            if ret == 'OK':
+                print('[command_ret]setSpeed_ok')
+            elif ret == 'FALSE':
+                print("[re-command]setSpeed")
+                self.setSpeed()
+            else:
+                pass
+            print("[command]setSpeed:%f"%speed)
         except BaseException as e:
             msg = traceback.format_exc()
             print(msg)
