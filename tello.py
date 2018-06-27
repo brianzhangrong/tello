@@ -307,7 +307,7 @@ class Tello:
 
         Used by the timer in Tello.send_command() to indicate to that a response
         timeout has occurred.
-
+`
         """
 
         self.abort_flag = True

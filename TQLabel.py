@@ -65,6 +65,6 @@ class TQLable(QLabel):
 
         controller =TelloController.TelloController()
 
-        controller.fly(point,True)
+        controller.fly(point,False)
         #after fly release point
         point=[]

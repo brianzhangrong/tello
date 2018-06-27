@@ -14,7 +14,9 @@ import TelloUi
 
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
+import sys
 if __name__ == '__main__':
+    sys.setrecursionlimit(1000)
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
     ui = TelloUi.Ui_Dialog()

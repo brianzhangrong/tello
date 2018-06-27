@@ -11,6 +11,7 @@ import traceback
 import GlobalConfig
 import tello
 import  numpy as np
+import time
 
 PI=3.14
 global drone
@@ -31,9 +32,9 @@ class TelloController:
                 if p == lastPoint:
                     begin = True
                     if(not isDebug):
-                        drone=tello.Tello("192.168.10.2", 8888,False,.9,"192.168.10.1",8889)
-                        self.takeOff(drone)
-                        self.moveUp(drone)
+                        self.connect()
+                        self.takeOff()
+                        self.moveUp()
                     startVector=startDirection
                     toVector=np.polysub(point[i+1],p)
                     rotate =self.cal_rotate(startVector,toVector)
@@ -61,84 +62,111 @@ class TelloController:
                     print("[warning]逆时针旋转:%f"%rotate)
                 print("[warning]fly distance:%d,ratio:%f"%(distance,GlobalConfig.ratio()))
                 distance=distance*GlobalConfig.ratio()
+                print("[warning]actual fly distance:%f" % distance)
                 if not  isDebug:
                     if cw_or_ccw>0:
                         #顺时针
-                        self.rotateCw(drone, rotate)
+                        self.rotateCw( rotate)
                     else:
                         #逆时针
-                        self.rotateCcw(drone, rotate)
-                    self.move_forward(distance,drone)
+                        self.rotateCcw( rotate)
+                    self.move_forward(distance)
                     if end:
-                        self.land(drone)
-                print("[warning]actual fly distance:%f" % distance)
+                        self.land()
+
 
         else:
             print('no point error')
 
-    def land(self, drone):
-        drone.land()
+    def connect(self):
+        global drone
+        while(True):
+            try:
+                drone = tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
+                time.sleep(30)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
-    def rotateCcw(self, drone, rotate):
-        try:
-            drone.rotate_ccw(rotate)
-            time.sleep(3)
-        except BaseException as e:
-            msg = traceback.format_exc()
-            print (msg)
-            self.land(drone)
+    def land(self):
+        global drone
+        while True:
+            try:
+                drone.land()
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
-    def rotateCw(self, drone, rotate):
-        try:
-            drone.rotate_cw(rotate)
-            time.sleep(3)
-        except BaseException as e:
-            msg = traceback.format_exc()
-            print (msg)
-            self.land(drone)
+    def rotateCcw(self,  rotate):
+        global drone
+        while True:
+            try:
+                drone.rotate_ccw(rotate)
+                time.sleep(3)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
-    def moveUp(self, drone):
-        try:
-            drone.move_up(1)
-            time.sleep(1)
-        except BaseException as e:
-            msg = traceback.format_exc()
-            print (msg)
-            self.land(drone)
+    def rotateCw(self, rotate):
+        global drone
+        while True:
+            try:
+                drone.rotate_cw(rotate)
+                time.sleep(3)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
-    def takeOff(self, drone):
-        try:
-            drone.takeoff()
-            time.sleep(1)
-        except BaseException as e:
-            msg = traceback.format_exc()
-            print (msg)
-            self.land(drone)
+    def moveUp(self):
+        global drone
+        while True:
+            try:
+                drone.move_up(1)
+                time.sleep(1)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
-    def move_forward(self,distance,drone):
-        while(distance>5):
+    def takeOff(self):
+        global drone
+        while True:
+            try:
+                drone.takeoff()
+                time.sleep(1)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
+
+    def move_forward(self,distance):
+        global drone
+        while(distance>4):
             if drone is not None:
-                try:
-                    drone.move_forward(5)
-                    time.sleep(1)
-                except BaseException as e:
-                    msg = traceback.format_exc()
-                    print (msg)
-                    self.land(drone)
-            distance-=5
-            print("move forward:5")
+                self.moveforward(4)
+            distance-=4
+            print("move forward:4")
         if(distance>0):
             if drone is not None:
-                try:
-                    drone.move_forward(distance)
-                    time.sleep(1)
-                except BaseException as e:
-                    msg = traceback.format_exc()
-                    print (msg)
-                    self.land(drone)
+                self.move_forward(distance)
             print("move forward:%f"%distance)
         if drone is not None:
             time.sleep(5)
+
+    def moveforward(self,distance):
+        global drone
+        while True:
+            try:
+                drone.move_forward(distance)
+                time.sleep(1)
+                break
+            except BaseException as e:
+                msg = traceback.format_exc()
+                print(msg)
 
     def cal_distance(self,toVector):
         return math.sqrt(toVector[0]*toVector[0]+toVector[1]*toVector[1])
