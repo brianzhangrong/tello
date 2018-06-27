@@ -15,7 +15,7 @@ import time
 
 PI=3.14
 global drone
-drone=0
+drone=tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
 class TelloController:
 
     def fly(self,point,isDebug):
@@ -32,7 +32,8 @@ class TelloController:
                 if p == lastPoint:
                     begin = True
                     if(not isDebug):
-                        self.connect()
+                        if drone is None:
+                            self.connect()
                         self.takeOff()
                         self.moveUp()
                     startVector=startDirection
@@ -80,14 +81,12 @@ class TelloController:
 
     def connect(self):
         global drone
-        while(True):
-            try:
-                drone = tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
-                time.sleep(30)
-                break
-            except BaseException as e:
-                msg = traceback.format_exc()
-                print(msg)
+        try:
+            drone = tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
+            time.sleep(30)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
 
     def land(self):
         global drone
@@ -101,14 +100,13 @@ class TelloController:
 
     def rotateCcw(self,  rotate):
         global drone
-        while True:
-            try:
-                drone.rotate_ccw(rotate)
-                time.sleep(3)
-                break
-            except BaseException as e:
-                msg = traceback.format_exc()
-                print(msg)
+        try:
+            drone.rotate_ccw(rotate)
+            time.sleep(3)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
+            drone.land()
 
     def rotateCw(self, rotate):
         global drone
@@ -123,32 +121,31 @@ class TelloController:
 
     def moveUp(self):
         global drone
-        while True:
-            try:
-                drone.move_up(1)
-                time.sleep(1)
-                break
-            except BaseException as e:
-                msg = traceback.format_exc()
-                print(msg)
+        try:
+            drone.move_up(1)
+            time.sleep(1)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
 
     def takeOff(self):
         global drone
-        while True:
-            try:
-                drone.takeoff()
-                time.sleep(1)
-                break
-            except BaseException as e:
-                msg = traceback.format_exc()
-                print(msg)
+        try:
+            drone.takeoff()
+            time.sleep(1)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
 
     def move_forward(self,distance):
         global drone
-        while(distance>4):
+
+        if(distance>4):
+            loop = distance//4
             if drone is not None:
-                self.moveforward(4)
-            distance-=4
+                for i in range(loop):
+                    self.moveforward(4)
+            distance-=4*loop
             print("move forward:4")
         if(distance>0):
             if drone is not None:
@@ -191,7 +188,6 @@ class TelloController:
         print("#rotate:%51f#"%rotate)
         print("############################################################")
         return rotate
-
 
     # def calc_angle(self,x_point_s, y_point_s, x_point_e, y_point_e):
     #     angle = 0
