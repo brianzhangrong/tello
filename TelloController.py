@@ -16,6 +16,9 @@ import time
 PI=3.14
 global drone
 drone=tello.Tello("192.168.10.2", 8888, False, .9, "192.168.10.1", 8889)
+'''
+    tello的控制类
+'''
 class TelloController:
     '''
     根据打点计算飞行路线

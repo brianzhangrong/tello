@@ -13,7 +13,9 @@ from PyQt5.QtWidgets import QPushButton
 import GlobalConfig
 from TQLabel import TQLable
 
-
+'''
+    tello控制界面
+'''
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")

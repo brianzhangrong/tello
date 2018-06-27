@@ -11,9 +11,15 @@ import traceback
 import tello
 import time
 
+from PortClear import kill
+
 takeoffRestTime=5
 setSpeedRestTime=5
 global drone
+drone=tello.Tello("192.168.10.2", 8888,False,.9,"192.168.10.1",8889)
+'''
+    cmd控制tello程序，可独立启动
+'''
 def  main():
     global  drone
     global  takeoffRestTime
@@ -34,8 +40,6 @@ def  main():
                 speed = getParameter(x)
                 drone.set_speed(speed)
                 time.sleep(setSpeedRestTime)
-            elif(x.startswith("connect")):
-                drone=tello.Tello("192.168.10.2", 8888,False,.9,"192.168.10.1",8889)
             elif(x.startswith("f")):
                 distance= getParameter(x)
                 drone.move_forward(distance)
@@ -106,4 +110,5 @@ def getParameter(x):
 
 
 if __name__ == '__main__':
+    kill()
     main()

@@ -19,6 +19,9 @@ point=[]
 lineColor =QColor(255, 0, 255)
 pointColor=QColor(0, 0, 255)
 pen=QPen()
+'''
+    标定打点类
+'''
 class TQLable(QLabel):
 
     def mousePressEvent(self, ev: QtGui.QMouseEvent) -> None:
