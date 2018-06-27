@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 import math
-
+import traceback
 
 import GlobalConfig
 import tello
@@ -19,6 +19,7 @@ class TelloController:
 
     def fly(self,point,isDebug):
         global  drone
+        end=False
         step,total=0,len(point)-1
         print("预计飞行[%d]次航程"%total)
         startDirection=np.polyadd([0,0],[0,1])
@@ -30,9 +31,9 @@ class TelloController:
                 if p == lastPoint:
                     begin = True
                     if(not isDebug):
-                        drone=tello.Tello("192.168.10.2",8888)
-                        drone.takeoff()
-                        drone.move_up(1)
+                        drone=tello.Tello("192.168.10.2", 8888,False,.9,"192.168.10.1",8889)
+                        self.takeOff(drone)
+                        self.moveUp(drone)
                     startVector=startDirection
                     toVector=np.polysub(point[i+1],p)
                     rotate =self.cal_rotate(startVector,toVector)
@@ -63,25 +64,78 @@ class TelloController:
                 if not  isDebug:
                     if cw_or_ccw>0:
                         #顺时针
-                        drone.rotate_cw(rotate)
+                        self.rotateCw(drone, rotate)
                     else:
                         #逆时针
-                        drone.rotate_ccw(rotate)
+                        self.rotateCcw(drone, rotate)
                     self.move_forward(distance,drone)
+                    if end:
+                        self.land(drone)
                 print("[warning]actual fly distance:%f" % distance)
 
         else:
             print('no point error')
 
+    def land(self, drone):
+        drone.land()
+
+    def rotateCcw(self, drone, rotate):
+        try:
+            drone.rotate_ccw(rotate)
+            time.sleep(3)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print (msg)
+            self.land(drone)
+
+    def rotateCw(self, drone, rotate):
+        try:
+            drone.rotate_cw(rotate)
+            time.sleep(3)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print (msg)
+            self.land(drone)
+
+    def moveUp(self, drone):
+        try:
+            drone.move_up(1)
+            time.sleep(1)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print (msg)
+            self.land(drone)
+
+    def takeOff(self, drone):
+        try:
+            drone.takeoff()
+            time.sleep(1)
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print (msg)
+            self.land(drone)
+
     def move_forward(self,distance,drone):
         while(distance>5):
             if drone is not None:
-                drone.move_forward(5)
+                try:
+                    drone.move_forward(5)
+                    time.sleep(1)
+                except BaseException as e:
+                    msg = traceback.format_exc()
+                    print (msg)
+                    self.land(drone)
             distance-=5
             print("move forward:5")
         if(distance>0):
             if drone is not None:
-                drone.move_forward(distance)
+                try:
+                    drone.move_forward(distance)
+                    time.sleep(1)
+                except BaseException as e:
+                    msg = traceback.format_exc()
+                    print (msg)
+                    self.land(drone)
             print("move forward:%f"%distance)
         if drone is not None:
             time.sleep(5)

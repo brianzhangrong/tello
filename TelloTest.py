@@ -6,6 +6,8 @@
 # Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
+import traceback
+
 import tello
 import time
 
@@ -26,15 +28,14 @@ def  main():
                 time.sleep(takeoffRestTime)
             elif (x=="land"):#降落
                 drone.land()
+            elif x=="command":
+                drone.send_command("command")
             elif(x.startswith("s")):
                 speed = getParameter(x)
                 drone.set_speed(speed)
                 time.sleep(setSpeedRestTime)
             elif(x.startswith("connect")):
-                ipPort = getParameter(x)
-                ip=ipPort.split(":").pop(0)
-                port=ipPort.split(":").pop(1)
-                drone=tello.Tello(ip, port)
+                drone=tello.Tello("192.168.10.2", 8888,False,.9,"192.168.10.1",8889)
             elif(x.startswith("f")):
                 distance= getParameter(x)
                 drone.move_forward(distance)
@@ -69,7 +70,9 @@ def  main():
                 help()
             else:
                 print("unSupport Command")
-        except:
+        except BaseException as e:
+            msg = traceback.format_exc()
+            print(msg)
             print("执行命令失败:%s"%x)
             continue
 
