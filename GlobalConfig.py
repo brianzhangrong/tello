@@ -53,3 +53,4 @@ print("比例尺宽误差:%f"%ratio1)
 print("比例尺长误差:%f"%ratio2)
 
 
+

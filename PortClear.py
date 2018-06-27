@@ -9,3 +9,7 @@ def kill():
         print('已杀死pid为%s的进程,　返回值是:%s' % (pid, a))
     except OSError:
         print('端口没有占用')
+
+
+if __name__ == '__main__':
+    kill()

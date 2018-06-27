@@ -16,10 +16,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 import sys
 
-from PortClear import kill
 
 if __name__ == '__main__':
-    kill()
     sys.setrecursionlimit(1000)
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
