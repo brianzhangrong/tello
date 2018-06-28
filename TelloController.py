@@ -231,7 +231,7 @@ class TelloController:
             else:
                 print("[re-command]move_forward")
                 self.makeSureForwardMoved(distance)
-         except BaseException as e:
+        except BaseException as e:
             self.printTrace()
             self.makeSureForwardMoved(distance)
 
