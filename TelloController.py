@@ -16,7 +16,7 @@ global drone
 PI=3.14
 sleepTime=3
 
-drone=tello.Tello(GlobalConfig.localIp, GlobalConfig.localPort, False, 30, "192.168.10.1", 8889)
+drone=tello.Tello(GlobalConfig.localIp, GlobalConfig.localPort, False, 1, "192.168.10.1", 8889)
 '''
     tello的控制类
 '''
@@ -66,7 +66,7 @@ class TelloController:
                     cw_or_ccw = self.cal_cw_or_ccw(startVector,toVector)
                     pass
                 lastPoint=p
-                self.printRotateAndDistance(cw_or_ccw, distance, rotate, step)
+                self.printRotateAndDistance(cw_or_ccw, distance, rotate, step,total)
                 #实际飞行距离=像素坐标距离*比例尺
                 distance=distance*GlobalConfig.ratio()
                 print("[warning]actual fly distance:%f" % distance)
@@ -88,8 +88,8 @@ class TelloController:
             #没有打点
             print('no point error')
 
-    def printRotateAndDistance(self, cw_or_ccw, distance, rotate, step):
-        print("[warning]第%d次航程" % step)
+    def printRotateAndDistance(self, cw_or_ccw, distance, rotate, step,total):
+        print("[warning]第[%d/%d]次航程" % (step,total))
         if cw_or_ccw > 0:
             print("[warning]顺时针旋转:%f" % rotate)
         else:
@@ -102,7 +102,7 @@ class TelloController:
     def connect(self):
         global drone,sleepTime
         try:
-            drone = tello.Tello(localIp, localPort, False, 30, "192.168.10.1", 8889)
+            drone = tello.Tello(GlobalConfig.localIp, GlobalConfig.localPort, False, 1, "192.168.10.1", 8889)
             time.sleep(sleepTime)
             print("[command]connect to tello")
         except BaseException as e:
