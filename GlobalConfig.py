@@ -4,7 +4,7 @@ import math
 #飞机起始位置向下
 global imgUrl,imgx,imgy,realx,realy,localIp,localPort
 imgUrl="/Users/zhangrong/Downloads/pic/0001.jpg"
-localIp="192.168.10.3"
+localIp="192.168.10.2"
 localPort =8888
 imgx=377 #图中户型x(像素值)
 imgy=629 #图中户型y（像素值）

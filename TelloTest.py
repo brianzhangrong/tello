@@ -11,11 +11,12 @@ import traceback
 import tello
 import time
 
+from GlobalConfig import localIp, localPort
 from PortClear import kill
 
 takeoffRestTime=5
 setSpeedRestTime=5
-global drone,localIp,localPort
+global drone
 drone=tello.Tello(localIp, localPort,False,.9,"192.168.10.1",8889)
 '''
     cmd控制tello程序，可独立启动

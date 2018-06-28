@@ -12,11 +12,11 @@ import GlobalConfig
 import tello
 import  numpy as np
 import time
-
+global drone
 PI=3.14
-sleepTime=5
-global drone,localIp,localPort
-drone=tello.Tello(localIp, localPort, False, 30, "192.168.10.1", 8889)
+sleepTime=3
+
+drone=tello.Tello(GlobalConfig.localIp, GlobalConfig.localPort, False, 30, "192.168.10.1", 8889)
 '''
     tello的控制类
 '''
@@ -77,7 +77,7 @@ class TelloController:
                         self.rotateCw( rotate)
                     else:
                         #逆时针
-                        self.rotateCw(360- rotate)
+                        self.rotateCcw(rotate)
                     #前行
                     self.move_forward(distance)
                     if end:
@@ -146,10 +146,10 @@ class TelloController:
     def rotateCcw(self,  rotate):
         global drone,sleepTime
         try:
-            ret=drone.rotate_ccw(str(int(rotate)))
+            ret=drone.rotate_ccw(int(rotate))
             time.sleep(sleepTime)
             if ret == 'OK':
-                print('[command_ret]rotateCcw_ok:%d'%(str(int(rotate))))
+                print('[command_ret]rotateCcw_ok:%d'%(int(rotate)))
             elif ret == 'FALSE':
                 print("[re-command]rotateCcw")
                 self.rotateCcw(rotate)
