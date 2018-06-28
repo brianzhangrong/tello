@@ -51,10 +51,6 @@ class Tello:
 
         self.socket.bind((local_ip, local_port))
 
-        self.receive_thread = threading.Thread(target=self._receive_thread)
-        self.receive_thread.daemon=True
-
-        self.receive_thread.start()
 
         if self.send_command('command') != 'OK':
             raise RuntimeError('Tello rejected attempt to enter command mode')
@@ -64,17 +60,6 @@ class Tello:
 
         self.socket.close()
 
-    def _receive_thread(self):
-        """Listens for responses from the Tello.
-
-        Runs as a thread, sets self.response to whatever the Tello last returned.
-
-        """
-        while True:
-            try:
-                self.response, ip = self.socket.recvfrom(256)
-            except Exception:
-                break
 
     def flip(self, direction):
         """Flips.
@@ -285,18 +270,11 @@ class Tello:
         """
 
         self.abort_flag = False
-        timer = threading.Timer(self.command_timeout, self.set_abort_flag)
 
         self.socket.sendto(command.encode('utf-8'), self.tello_address)
 
-        timer.start()
-
-        while self.response is None:
-            if self.abort_flag is True:
-                raise RuntimeError('No response to command')
-
-        timer.cancel()
-
+        self.response, ip = self.socket.recvfrom(256)
+        print("sendcommand:%s,response:%s,ip:%s"%(command,self.response,ip))
         response = self.response.decode('utf-8')
         self.response = None
 
