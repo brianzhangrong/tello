@@ -26,7 +26,7 @@ class TelloController:
     '''
     def fly(self,point,isDebug):
         global  drone
-        end=False#是否截止点
+        begin,end=False,False#是否截止点
         step,total=0,len(point)-1 #计算飞行步数，当前步数
         print("预计飞行[%d]次航程"%total)
         #起始向量，飞机头向下
@@ -108,10 +108,11 @@ class TelloController:
             self.printTrace()
 
     def setSpeed(self):
-        global drone
+        global drone,sleepTime
         try:
             speed=1
             ret = drone.set_speed(speed)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ok]setSpeed')
             else:
@@ -141,6 +142,8 @@ class TelloController:
     def rotateCcw(self,  rotate):
         global drone,sleepTime
         try:
+            if(int(rotate)==0):
+                return
             ret=drone.rotate_ccw(int(rotate))
             if ret == 'OK':
                 print('[command_ok]rotateCcw_ok:%d'%(int(rotate)))
@@ -161,6 +164,8 @@ class TelloController:
     def rotateCw(self, rotate):
         global drone,sleepTime
         try:
+            if(int(rotate)==0):
+                return
             ret = drone.rotate_cw(str(int(rotate)))
             if ret == 'OK':
                 print('[command_ok]rotate_cw_ok:%d'%(int(rotate)))
@@ -179,6 +184,7 @@ class TelloController:
             ret=drone.move_up(0.5)
             if ret == 'OK':
                 print('[command_ok]move_up_ok:0.5')
+                time.sleep(sleepTime)
             else:
                 print("[re-command]moveup")
                 self.moveUp()
@@ -189,9 +195,10 @@ class TelloController:
     起步
     '''
     def takeOff(self):
-        global drone
+        global drone,sleepTime
         try:
             ret =drone.takeoff()
+            time.sleep(sleepTime * 5)
             if ret == 'OK':
                 print('[command_ok]takeoff_ok')
             else:

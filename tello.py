@@ -274,7 +274,7 @@ class Tello:
         self.socket.sendto(command.encode('utf-8'), self.tello_address)
 
         self.response, ip = self.socket.recvfrom(256)
-        print("sendcommand:%s,response:%s,ip:%s"%(command,self.response,ip))
+        print("sendcommand:%s,response:%s"%(command,self.response))
         response = self.response.decode('utf-8')
         self.response = None
 
