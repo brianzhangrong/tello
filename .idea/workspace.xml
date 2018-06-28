@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="566cda7d-d0e8-4339-be52-4e51d59813f6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelloController.py" beforeDir="false" afterPath="$PROJECT_DIR$/TelloController.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="TelloController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TelloController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="262" column="30" selection-start-line="262" selection-start-column="30" selection-end-line="262" selection-end-column="30" />
+            <state relative-caret-position="1979">
+              <caret line="162" column="13" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
               <folding>
                 <element signature="e#195#206#0" expanded="true" />
               </folding>
@@ -82,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/tello.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
-              <caret line="248" selection-start-line="248" selection-end-line="248" />
+              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -157,6 +156,9 @@
       <find>rotate_cw</find>
       <find>time</find>
       <find>abort_flag</find>
+      <find>_receive_thread</find>
+      <find>receive_thread</find>
+      <find>response</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -764,13 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tello.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="248" selection-start-line="248" selection-end-line="248" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TelloQt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -781,10 +776,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TelloController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="262" column="30" selection-start-line="262" selection-start-column="30" selection-end-line="262" selection-end-column="30" />
+        <state relative-caret-position="1979">
+          <caret line="162" column="13" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
           <folding>
             <element signature="e#195#206#0" expanded="true" />
           </folding>

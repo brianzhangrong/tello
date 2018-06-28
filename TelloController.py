@@ -160,7 +160,7 @@ class TelloController:
 
         except BaseException as e:
             self.printTrace()
-            self.rotateCcw(rotate)
+            #self.rotateCcw(rotate)
 
     def printTrace(self):
         msg = traceback.format_exc()
@@ -184,7 +184,7 @@ class TelloController:
             print("[command]rotate_cw:%f" % rotate)
         except BaseException as e:
             self.printTrace()
-            self.rotateCw(rotate)
+           # self.rotateCw(rotate)
     '''
     上升
     '''
@@ -260,7 +260,7 @@ class TelloController:
 
         except BaseException as e:
             self.printTrace()
-            self.makeSureForwardMoved(distance)
+            #self.makeSureForwardMoved(distance)
 
     def cal_distance(self,toVector):
         return math.sqrt(toVector[0]*toVector[0]+toVector[1]*toVector[1])
