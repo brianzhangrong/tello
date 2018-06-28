@@ -14,8 +14,9 @@ import  numpy as np
 import time
 
 PI=3.14
-global drone
-drone=tello.Tello("192.168.10.3", 8888, False, 30, "192.168.10.1", 8889)
+sleepTime=5
+global drone,localIp,localPort
+drone=tello.Tello(localIp, localPort, False, 30, "192.168.10.1", 8889)
 '''
     tello的控制类
 '''
@@ -65,12 +66,7 @@ class TelloController:
                     cw_or_ccw = self.cal_cw_or_ccw(startVector,toVector)
                     pass
                 lastPoint=p
-                print("[warning]第%d次航程"%step)
-                if cw_or_ccw>0:
-                    print("[warning]顺时针旋转:%f"%rotate)
-                else:
-                    print("[warning]逆时针旋转:%f"%rotate)
-                print("[warning]fly distance:%d,ratio:%f"%(distance,GlobalConfig.ratio()))
+                self.printRotateAndDistance(cw_or_ccw, distance, rotate, step)
                 #实际飞行距离=像素坐标距离*比例尺
                 distance=distance*GlobalConfig.ratio()
                 print("[warning]actual fly distance:%f" % distance)
@@ -91,18 +87,26 @@ class TelloController:
         else:
             #没有打点
             print('no point error')
+
+    def printRotateAndDistance(self, cw_or_ccw, distance, rotate, step):
+        print("[warning]第%d次航程" % step)
+        if cw_or_ccw > 0:
+            print("[warning]顺时针旋转:%f" % rotate)
+        else:
+            print("[warning]逆时针旋转:%f" % rotate)
+        print("[warning]fly distance:%d,ratio:%f" % (distance, GlobalConfig.ratio()))
+
     '''
     连接ssid
     '''
     def connect(self):
-        global drone
+        global drone,sleepTime
         try:
-            drone = tello.Tello("192.168.10.3", 8888, False, 30, "192.168.10.1", 8889)
-            time.sleep(5)
+            drone = tello.Tello(localIp, localPort, False, 30, "192.168.10.1", 8889)
+            time.sleep(sleepTime)
             print("[command]connect to tello")
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
 
     def setSpeed(self):
         global drone
@@ -118,8 +122,7 @@ class TelloController:
                 pass
             print("[command]setSpeed:%f"%speed)
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
     '''
     降落
     '''
@@ -136,16 +139,15 @@ class TelloController:
                 pass
             print("[[command]sucess]landing.....")
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
     '''
     逆时针旋转
     '''
     def rotateCcw(self,  rotate):
-        global drone
+        global drone,sleepTime
         try:
             ret=drone.rotate_ccw(str(int(rotate)))
-            time.sleep(3)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]rotateCcw_ok:%d'%(str(int(rotate))))
             elif ret == 'FALSE':
@@ -156,17 +158,21 @@ class TelloController:
             print("[command]rotate_ccw:%f"%rotate)
 
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
             self.rotateCcw(rotate)
+
+    def printTrace(self):
+        msg = traceback.format_exc()
+        print(msg)
+
     '''
     顺时针旋转
     '''
     def rotateCw(self, rotate):
-        global drone
+        global drone,sleepTime
         try:
             ret = drone.rotate_cw(str(int(rotate)))
-            time.sleep(3)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]rotate_cw_ok:%d'%(int(rotate)))
             elif ret == 'FALSE':
@@ -176,17 +182,16 @@ class TelloController:
                 pass
             print("[command]rotate_cw:%f" % rotate)
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
             self.rotateCw(rotate)
     '''
     上升
     '''
     def moveUp(self):
-        global drone
+        global drone,sleepTime
         try:
             ret=drone.move_up(0.5)
-            time.sleep(3)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]move_up_ok:0.5')
             elif ret == 'FALSE':
@@ -196,16 +201,15 @@ class TelloController:
                 pass
             print("[command]move_up:0.5")
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
     '''
     起步
     '''
     def takeOff(self):
-        global drone
+        global drone,sleepTime
         try:
             ret =drone.takeoff()
-            time.sleep(3)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]takeoff_ok')
             elif ret == 'FALSE':
@@ -216,8 +220,7 @@ class TelloController:
             print("[command]takeoff")
 
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
     '''
     前行，单步最长4米
     '''
@@ -241,10 +244,10 @@ class TelloController:
     确保一定前行distance
     '''
     def makeSureForwardMoved(self,distance):
-        global drone
+        global drone,sleepTime
         try:
             ret =drone.move_forward(distance)
-            time.sleep(3)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]move_forward_ok')
             elif ret == 'FALSE':
@@ -255,8 +258,7 @@ class TelloController:
             print("[command]move_forward:%f"%distance)
 
         except BaseException as e:
-            msg = traceback.format_exc()
-            print(msg)
+            self.printTrace()
             self.makeSureForwardMoved(distance)
 
     def cal_distance(self,toVector):

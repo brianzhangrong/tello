@@ -15,8 +15,8 @@ from PortClear import kill
 
 takeoffRestTime=5
 setSpeedRestTime=5
-global drone
-drone=tello.Tello("192.168.10.3", 8888,False,.9,"192.168.10.1",8889)
+global drone,localIp,localPort
+drone=tello.Tello(localIp, localPort,False,.9,"192.168.10.1",8889)
 '''
     cmd控制tello程序，可独立启动
 '''
