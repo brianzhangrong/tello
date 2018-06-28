@@ -14,7 +14,7 @@ import  numpy as np
 import time
 global drone
 PI=3.14
-sleepTime=3
+sleepTime=1
 
 drone=tello.Tello(GlobalConfig.localIp, GlobalConfig.localPort, False, 1, "192.168.10.1", 8889)
 '''
@@ -113,6 +113,7 @@ class TelloController:
         try:
             speed=1
             ret = drone.set_speed(speed)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ret]setSpeed_ok')
             elif ret == 'FALSE':
@@ -147,7 +148,7 @@ class TelloController:
         global drone,sleepTime
         try:
             ret=drone.rotate_ccw(int(rotate))
-            time.sleep(sleepTime)
+            time.sleep(sleepTime*5)
             if ret == 'OK':
                 print('[command_ret]rotateCcw_ok:%d'%(int(rotate)))
             elif ret == 'FALSE':
@@ -172,7 +173,7 @@ class TelloController:
         global drone,sleepTime
         try:
             ret = drone.rotate_cw(str(int(rotate)))
-            time.sleep(sleepTime)
+            time.sleep(sleepTime*5)
             if ret == 'OK':
                 print('[command_ret]rotate_cw_ok:%d'%(int(rotate)))
             elif ret == 'FALSE':
@@ -209,7 +210,7 @@ class TelloController:
         global drone,sleepTime
         try:
             ret =drone.takeoff()
-            time.sleep(sleepTime)
+            time.sleep(5)
             if ret == 'OK':
                 print('[command_ret]takeoff_ok')
             elif ret == 'FALSE':
@@ -247,7 +248,7 @@ class TelloController:
         global drone,sleepTime
         try:
             ret =drone.move_forward(distance)
-            time.sleep(sleepTime)
+            time.sleep(sleepTime*distance)
             if ret == 'OK':
                 print('[command_ret]move_forward_ok')
             elif ret == 'FALSE':
