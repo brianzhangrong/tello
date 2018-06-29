@@ -112,7 +112,6 @@ class TelloController:
         try:
             speed=1
             ret = drone.set_speed(speed)
-            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ok]setSpeed')
             else:
@@ -182,9 +181,9 @@ class TelloController:
         global drone,sleepTime
         try:
             ret=drone.move_up(0.5)
+            time.sleep(sleepTime)
             if ret == 'OK':
                 print('[command_ok]move_up_ok:0.5')
-                time.sleep(sleepTime)
             else:
                 print("[re-command]moveup")
                 self.moveUp()
