@@ -44,7 +44,7 @@ class TelloController:
                             self.connect()
                         self.takeOff()
                         self.setSpeed()
-                        self.moveUp()
+                       # self.moveUp()
                     startVector=startDirection
                     toVector=np.polysub(point[i+1],p)
                     rotate =self.cal_rotate(startVector,toVector)
